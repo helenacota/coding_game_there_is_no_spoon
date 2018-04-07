@@ -14,8 +14,8 @@ class Player
     {
         int xSize = int.Parse(Console.ReadLine()); // the number of cells on the X axis
         int ySize = int.Parse(Console.ReadLine()); // the number of cells on the Y axis
-        Console.Error.WriteLine("Qtd de colunas: " + xSize);
-        Console.Error.WriteLine("Qtd de linhas: " + ySize);
+        Console.Error.WriteLine("Qtt coluns: " + xSize);
+        Console.Error.WriteLine("Qtd lines: " + ySize);
         string[,] grid = new string[xSize, ySize];
         
         for (int y = 0; y < ySize; y++)
@@ -28,9 +28,6 @@ class Player
             }
         }
 
-        // Write an action using Console.WriteLine()
-        // To debug: Console.Error.WriteLine("Debug messages...");
-
         for (int y = 0; y < ySize; y++)
         {
             for(int x = 0; x < xSize; x++)
@@ -39,16 +36,16 @@ class Player
                 bool haveYNeighbour = false;
                 int xNeighbour = 0;
                 int yNeighbour = 0;
-                string output = x + " " + y + " ";
+                string output = ""; 
                 
-                Console.Error.WriteLine(" -- nova celula --");
+                Console.Error.WriteLine(" -- new cell --");
                 Console.Error.WriteLine("grid[" + x + "," + y + "] = " + grid[x, y]);
                 
                 // if the current point dsnt have energy (not a node)
                 if(grid[x,y] == ".") continue;
                 
                 if((x+1) < xSize){
-                    Console.Error.WriteLine("direita grid[" + (x+1) + "," + y + "] = " + grid[x+1, y]);
+                    Console.Error.WriteLine("right neighbour[" + (x+1) + "," + y + "] = " + grid[x+1, y]);
 
                     // if the right neighbour have energy
                     for(xNeighbour = x+1; xNeighbour < xSize; xNeighbour++)
@@ -62,7 +59,7 @@ class Player
 
                 }
                 if((y+1) < ySize){
-                    Console.Error.WriteLine("baixo grid [" + x + "," + (y+1) + "] = " + grid[x, y+1]);
+                    Console.Error.WriteLine("botton neighbour [" + x + "," + (y+1) + "] = " + grid[x, y+1]);
 
                     // if the right neighbour have energy
                     for(yNeighbour = y+1; yNeighbour < ySize; yNeighbour++)
@@ -74,6 +71,9 @@ class Player
                         }
                     }
                 }
+
+                // building output with 3 coordinates: current node, its right neighbor, its bottom neighbor
+                output = x + " " + y + " ";
 
                 if(haveXNeighbour)
                 {
@@ -94,6 +94,5 @@ class Player
                 
             }
         }
-        // Three coordinates: a node, its right neighbor, its bottom neighbor
     }
 }
